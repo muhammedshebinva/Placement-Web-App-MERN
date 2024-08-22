@@ -43,6 +43,8 @@ const Signup = () => {
         if (input.file) {
             formData.append("file", input.file);
         }
+        const data = await JSON.stringify(formData)
+        console.log("hello",data)
 
         try {
             dispatch(setLoading(true));
