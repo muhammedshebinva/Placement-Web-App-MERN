@@ -8,6 +8,8 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 
+import shebinRoute from "./routes/shebin.route.js"
+
 import path from 'path'
 import { fileURLToPath } from 'url';
 
@@ -39,7 +41,12 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
+app.use("/api/admin", shebinRoute  )
 
+
+app.get("/sample", (req,res)=>{
+    res.send("hi this is sample")
+})
 
 
 app.listen(PORT,()=>{

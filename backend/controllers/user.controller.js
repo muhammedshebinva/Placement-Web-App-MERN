@@ -60,10 +60,11 @@ export const register = async (req, res) => {
             });
         };
         const file = req.file;
-
+        
 
        
         const user = await User.findOne({ email });
+        
         if (user) {
             return res.status(400).json({
                 message: 'User already exist with this email.',
@@ -102,7 +103,11 @@ export const login = async (req, res) => {
                 success: false
             });
         };
+
+
         let user = await User.findOne({ email });
+
+
         if (!user) {
             return res.status(400).json({
                 message: "Incorrect email or password.",
