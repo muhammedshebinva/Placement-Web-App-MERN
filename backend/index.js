@@ -7,11 +7,10 @@ import userRoute from "./routes/user.route.js";
 import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
-
-import shebinRoute from "./routes/shebin.route.js"
-
+import adminRoute from "./routes/admin.route.js"
 import path from 'path'
 import { fileURLToPath } from 'url';
+import { User } from "./models/user.model.js";
 
 const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
 const __dirname = path.dirname(__filename); // get the name of the directory
@@ -41,13 +40,7 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
-app.use("/api/admin", shebinRoute  )
-
-
-app.get("/sample", (req,res)=>{
-    res.send("hi this is sample")
-})
-
+app.use("/api/admin", adminRoute )
 
 app.listen(PORT,()=>{
     connectDB();

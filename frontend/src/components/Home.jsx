@@ -16,6 +16,11 @@ const Home = () => {
     if (user?.role === 'recruiter') {
       navigate("/admin/companies");
     }
+
+    if(user?.role === 'admin'){
+      navigate("/admin/dashboard")
+    }
+
   }, []);
   return (
     <div>

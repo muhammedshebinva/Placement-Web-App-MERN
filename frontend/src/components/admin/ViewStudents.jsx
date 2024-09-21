@@ -1,45 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../shared/Navbar'
+import axios from 'axios'
+import StudentsTable from './StudentsTable';
+import { useDispatch, useSelector } from 'react-redux';
+import { setStudents } from '@/redux/studentsSlice';
 
 
 
 function ViewStudents() {
 
-    const userData = [
-    {
-        name:"shebin", 
-        email:"shebin@gmail.com"
-    } ,
-    {name:"shebin", email:"shebin@gmail.com"} ,
-    {name:"shebin", email:"shebin@gmail.com"} ,
-    {name:"shebin", email:"shebin@gmail.com"} 
-]
-        
+  //const [students, setStudents] = useState([]);
+  const dispatch = useDispatch();
+
+  const {students} = useSelector(store=>store.student)
+
+  useEffect(() => {
+    const fetchAllSudents = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/admin/students');
+        dispatch(setStudents(response.data))
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchAllSudents();
+  }, []);
+
+
+
+
     
   return (
     <>
     <Navbar/>
-    <div>ViewStudents</div>
-
-    <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-    
-      {userData.map((user, index) => (
-        <tr key={index}>
-          <td>{user.name}</td>
-          <td>{user.email}</td>
-        </tr>
-      ))}
-
-    </tbody>
-  </table> 
-
+    <div className='max-w-7xl mx-auto'>
+                <h1 className='font-bold text-xl my-5'>Students {students?.length}</h1>
+                <StudentsTable />
+            </div>
 
     </>
   )

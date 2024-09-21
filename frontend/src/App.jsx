@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Navbar from './components/shared/Navbar'
 import Login from './components/auth/Login'
 import Signup from './components/auth/Signup'
 import Home from './components/Home'
@@ -16,6 +15,8 @@ import Applicants from './components/admin/Applicants'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 import AdminDashboard from './components/admin/AdminDashboard'
 import ViewStudents from './components/admin/ViewStudents'
+import ProtectAdminRoute from './components/admin/ProtectAdminRoute'
+import ViewCompanies from './components/admin/ViewCompanies'
 
 
 const appRouter = createBrowserRouter([
@@ -47,7 +48,7 @@ const appRouter = createBrowserRouter([
     path: "/profile",
     element: <Profile />
   },
-  // admin ke liye yha se start hoga
+
   {
     path:"/admin/companies",
     element: <ProtectedRoute><Companies/></ProtectedRoute>
@@ -74,11 +75,15 @@ const appRouter = createBrowserRouter([
   },
   {
     path:"/admin/dashboard",
-    element:<AdminDashboard/>
+    element:<ProtectAdminRoute><AdminDashboard/></ProtectAdminRoute> 
   },
   {
     path:"/admin/viewstudents",
-    element:<ViewStudents/>
+    element:<ProtectAdminRoute><ViewStudents/></ProtectAdminRoute>
+  },
+  {
+    path:"/admin/viewcompanies",
+    element:<ProtectAdminRoute><ViewCompanies/></ProtectAdminRoute>
   }
 
 ])
