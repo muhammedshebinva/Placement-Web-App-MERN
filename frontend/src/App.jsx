@@ -17,6 +17,12 @@ import AdminDashboard from './components/admin/AdminDashboard'
 import ViewStudents from './components/admin/ViewStudents'
 import ProtectAdminRoute from './components/admin/ProtectAdminRoute'
 import ViewCompanies from './components/admin/ViewCompanies'
+import AdminLogin from './components/auth/AdminLogin'
+import CompanyLogin from './components/auth/CompanyLogin'
+import CompanyFullDetails from './components/admin/CompanyFullDetails'
+import CompanySignup from './components/auth/CompanySignup'
+import ViewClass from './components/admin/ViewClass'
+import ScheduledClassList from './components/ScheduledClassList'
 
 
 const appRouter = createBrowserRouter([
@@ -33,6 +39,10 @@ const appRouter = createBrowserRouter([
     element: <Signup />
   },
   {
+    path:"/company/signup",
+    element:<CompanySignup/>
+  },
+  {
     path: "/jobs",
     element: <Jobs />
   },
@@ -45,9 +55,22 @@ const appRouter = createBrowserRouter([
     element: <Browse />
   },
   {
+    path:"/scheduledclass",
+    element:<ScheduledClassList/>
+  },
+  {
     path: "/profile",
     element: <Profile />
   },
+  {
+    path:"/admin/login",
+    element:<AdminLogin/>
+  },
+  {
+    path:"/company/login",
+    element:<CompanyLogin/>
+  },
+
 
   {
     path:"/admin/companies",
@@ -84,7 +107,16 @@ const appRouter = createBrowserRouter([
   {
     path:"/admin/viewcompanies",
     element:<ProtectAdminRoute><ViewCompanies/></ProtectAdminRoute>
+  },
+  {
+    path:"/admin/companies/viewfullcompany",
+    element:<ProtectAdminRoute><CompanyFullDetails/></ProtectAdminRoute>
+  },
+  {
+    path:"/admin/ViewClass",
+    element:<ProtectAdminRoute><ViewClass/></ProtectAdminRoute>
   }
+
 
 ])
 function App() {
